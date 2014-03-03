@@ -1,0 +1,48 @@
+button, input, select, textarea {
+  font-family : inherit;
+  font-size   : 100%;
+}
+
+input[type="text"], textarea, select {
+  width : 150px;
+  margin: 0;
+
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For all Gecko based browsers */
+          box-sizing: border-box;
+}
+
+input[type=submit] {
+  border: 1px dotted #999;
+  border-radius: 0;
+
+  -webkit-appearance: none;
+}
+
+#bookingForm {
+	border-top:1px solid #777;
+    border-bottom:1px solid #777;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h2{
+	color: blue;
+}
+
+.CompactTravel {
+float: left;
+margin-bottom: 5px;
+}
+
+.error{
+    border: 1px solid red;
+}
+
+#textBerangkat{
+	color: green;
+}
+
+#textPulang{
+	color: brown;
+}
