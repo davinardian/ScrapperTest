@@ -50,7 +50,7 @@
 				<td>Dari</td>
 				<td>:</td>
 				<td>
-					<input size="20" id="from" />
+					<input size="20" id="from" name="from" />
 					<input type="hidden" id="fromHidden" name="fromHidden" />
 				</td>
 			</tr>
@@ -58,7 +58,7 @@
 				<td>Ke</td>
 				<td>:</td>
 				<td>
-					<input size="20" id="to" />
+					<input size="20" id="to" name="to" />
 					<input type="hidden" id="toHidden" name="toHidden" />
 				</td>
 			</tr>
@@ -133,7 +133,7 @@
 	<c:choose>
 	<c:when test="${tableStatus=='print'}">
 	
-		<h3><div id="textBerangkat">Berangkat Tanggal <c:out value="${tanggalBerangkat}"/></div></h3>
+		<h3><div id="textBerangkat">Berangkat <c:out value="${fromName}"/> - <c:out value="${toName}"/> Tanggal <c:out value="${tanggalBerangkat}"/></div></h3>
 	
 		<table class="TFtable">
 		<tr>
@@ -153,7 +153,7 @@
 		<c:choose>
 		<c:when test="${status=='pp'}">
 	
-		<h3><div id="textPulang">Pulang Tanggal <c:out value="${tanggalPulang}"/></div></h3>
+		<h3><div id="textPulang">Pulang <c:out value="${toName}"/> - <c:out value="${fromName}"/> Tanggal <c:out value="${tanggalPulang}"/></div></h3>
 	
 		<table class="TFtable">
 		<tr>

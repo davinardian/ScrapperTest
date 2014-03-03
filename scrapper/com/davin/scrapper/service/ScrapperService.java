@@ -25,7 +25,7 @@ public class ScrapperService {
 	@Autowired
 	private CommonDAO commonDAO;
 
-	public Map<String,Object> bookingList(String from, String to, String date1, String date2, String jumlahOrang, String jumlahAnak, String jumlahBayi) throws IOException {
+	public Map<String,Object> bookingList(String from, String to, String fromName, String toName, String date1, String date2, String jumlahOrang, String jumlahAnak, String jumlahBayi) throws IOException {
 		
 		String day = DateUtil.day(date1);
 		String month = DateUtil.month(date1);
@@ -117,6 +117,8 @@ public class ScrapperService {
 		}
 		}
 		
+		map.put("fromName", fromName);
+		map.put("toName", toName);
 		map.put("tanggalBerangkat", date1);
 		map.put("tanggalPulang", date2);
 		map.put("berangkat", list1);

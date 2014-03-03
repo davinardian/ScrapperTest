@@ -22,10 +22,10 @@ public class ScrapperController {
 	
 	@RequestMapping(value = "/postDepart", method=RequestMethod.POST)
 	public ModelAndView  scraping(@RequestParam("tipe") String optionFlight, @RequestParam("fromHidden") String from,@RequestParam("toHidden") String to,
-			@RequestParam("dateDeparture") String tanggal1, @RequestParam(required=false,value="returnDate") String tanggal2,
+			@RequestParam("from") String fromName, @RequestParam("to") String toName, @RequestParam("dateDeparture") String tanggal1, @RequestParam(required=false,value="returnDate") String tanggal2,
 			@RequestParam("jumlahOrang") String jumlahOrang, @RequestParam("jumlahAnak") String jumlahAnak, @RequestParam("jumlahBayi") String jumlahBayi ) throws IOException  {
 	
-		return new ModelAndView("index", service.bookingList(from, to, tanggal1, tanggal2, jumlahOrang, jumlahAnak, jumlahBayi)); 
+		return new ModelAndView("index", service.bookingList(from, to, fromName, toName, tanggal1, tanggal2, jumlahOrang, jumlahAnak, jumlahBayi)); 
 		
 	}
 	
