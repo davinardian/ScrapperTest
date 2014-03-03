@@ -140,12 +140,18 @@
 			<th>Depart/ Arrive</th>
 			<th>Low Fare</th>
 			<th>Hi-Flyer</th>
+			<c:if test="${otherFareBerangkat!='empty'}">
+				<th>Other-Flyer</th>
+			</c:if>
 		</tr>
 		<c:forEach items="${berangkat}" var="itemsBerangkat" varStatus="counterBerangkat">				
 					<tr>
 						<td align="center">${itemsBerangkat.fromTo}<br/>${itemsBerangkat.eta}</td>
 						<td>${itemsBerangkat.lowFare}</td>
 						<td>${itemsBerangkat.hiFlyer}</td>
+						<c:if test="${otherFareBerangkat!='empty'}">
+							<td>${itemsBerangkat.otherFare}</td>
+						</c:if>
 					</tr>		
 		</c:forEach>
 		</table>
@@ -160,12 +166,18 @@
 			<th>Depart/ Arrive</th>
 			<th>Low Fare</th>
 			<th>Hi-Flyer</th>
+			<c:if test="${otherFarePulang!='empty'}">
+				<th>Other-Flyer</th>
+			</c:if>
 		</tr>
 		<c:forEach items="${pulang}" var="itemsPulang" varStatus="counterPulang">				
 					<tr>
 						<td align="center">${itemsPulang.fromTo}<br/>${itemsPulang.eta}</td>
 						<td>${itemsPulang.lowFare}</td>
 						<td>${itemsPulang.hiFlyer}</td>
+						<c:if test="${otherFarePulang!='empty'}">
+							<td>${itemsPulang.otherFare}</td>
+						</c:if>
 					</tr>		
 		</c:forEach>
 		</table>

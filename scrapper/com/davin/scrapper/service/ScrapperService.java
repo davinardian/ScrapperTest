@@ -74,23 +74,32 @@ public class ScrapperService {
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<FlightInformation> list1 = new ArrayList<FlightInformation>();
 		List<FlightInformation> list2 = new ArrayList<FlightInformation>();
+		String otherFareBerangkat="empty"; String otherFarePulang="empty"; 
 		
 		for (org.jsoup.nodes.Element table : doc.select("table[id=fareTable1_4]")) {
 			for (org.jsoup.nodes.Element tr : table.select("tr[class=rgRow]")) {
 				org.jsoup.select.Elements result1 = tr.select("div[class=segmentStation]");
-				org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
+				//org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
 				org.jsoup.select.Elements result3 = tr.select("div[class=price]").select("span");
 				
 				FlightInformation f = new FlightInformation();
+				int countResult1=result1.size();
 				
 				String text1 = result1.toString();
-				String text2 = result2.toString();
 				String text3 = result3.toString().replace("<span>", "").replace("</span>", "").replace("<div></div>", "").replace("\n", "-");
 				String[] text3Split = text3.split("-");
-				f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(253, 270).replace("&nbsp;", ""));
-				f.setEta(text2.substring(137, 178));
+				if(countResult1 == 1){
+					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(253, 270).replace("&nbsp;", ""));
+				}else{
+					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(290, 306).replace("&nbsp;", ""));
+				}
+				System.out.println(text1);
 				f.setLowFare(text3Split[0]);
 				f.setHiFlyer(text3Split[2]);
+				if(text3Split.length > 4){
+					f.setOtherFare(text3Split[4]);
+					otherFareBerangkat = "available";
+				}
 				list1.add(f);
 			}
 		}
@@ -99,19 +108,27 @@ public class ScrapperService {
 		for (org.jsoup.nodes.Element table : doc.select("table[id=fareTable2_4]")) {
 			for (org.jsoup.nodes.Element tr : table.select("tr[class=rgRow]")) {
 				org.jsoup.select.Elements result1 = tr.select("div[class=segmentStation]");
-				org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
+				//org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
 				org.jsoup.select.Elements result3 = tr.select("div[class=price]").select("span");
-				
+		
 				FlightInformation f = new FlightInformation();
+				int countResult1=result1.size();
 				
 				String text1 = result1.toString();
-				String text2 = result2.toString();
 				String text3 = result3.toString().replace("<span>", "").replace("</span>", "").replace("<div></div>", "").replace("\n", "-");
 				String[] text3Split = text3.split("-");
-				f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(253, 270).replace("&nbsp;", ""));
-				f.setEta(text2.substring(137, 178));
+				if(countResult1 == 1){
+					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(253, 270).replace("&nbsp;", ""));
+				}else{
+					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(290, 306).replace("&nbsp;", ""));
+				}
+				System.out.println(text1);
 				f.setLowFare(text3Split[0]);
 				f.setHiFlyer(text3Split[2]);
+				if(text3Split.length > 4){
+					f.setOtherFare(text3Split[4]);
+					otherFarePulang = "available";
+				}
 				list2.add(f);
 			}
 		}
@@ -121,6 +138,8 @@ public class ScrapperService {
 		map.put("toName", toName);
 		map.put("tanggalBerangkat", date1);
 		map.put("tanggalPulang", date2);
+		map.put("otherFareBerangkat", otherFareBerangkat);
+		map.put("otherFarePulang", otherFarePulang);
 		map.put("berangkat", list1);
 		map.put("pulang", list2);
 		map.put("status", status);

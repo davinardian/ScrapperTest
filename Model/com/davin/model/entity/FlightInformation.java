@@ -6,6 +6,7 @@ public class FlightInformation {
 	private String eta;
 	private String lowFare;
 	private String hiFlyer;
+	private String otherFare;
 	public String getFromTo() {
 		return fromTo;
 	}
@@ -29,6 +30,12 @@ public class FlightInformation {
 	}
 	public void setHiFlyer(String hiFlyer) {
 		this.hiFlyer = hiFlyer;
+	}
+	public String getOtherFare() {
+		return otherFare;
+	}
+	public void setOtherFare(String otherFare) {
+		this.otherFare = otherFare;
 	}
 	
 }
