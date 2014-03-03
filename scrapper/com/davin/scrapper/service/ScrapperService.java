@@ -93,7 +93,6 @@ public class ScrapperService {
 				}else{
 					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(290, 306).replace("&nbsp;", ""));
 				}
-				System.out.println(text1);
 				f.setLowFare(text3Split[0]);
 				f.setHiFlyer(text3Split[2]);
 				if(text3Split.length > 4){
@@ -122,7 +121,6 @@ public class ScrapperService {
 				}else{
 					f.setFromTo(text1.substring(130, 146).replace("&nbsp;", "")+" - "+text1.substring(290, 306).replace("&nbsp;", ""));
 				}
-				System.out.println(text1);
 				f.setLowFare(text3Split[0]);
 				f.setHiFlyer(text3Split[2]);
 				if(text3Split.length > 4){
