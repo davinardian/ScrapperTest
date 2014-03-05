@@ -69,15 +69,14 @@ public class ScrapperService {
 				"&ControlGroupAvailabilitySearchInputSelectView%24MultiCurrencyConversionViewSelectView%24DropDownListCurrency=default"+
 				"&ControlGroupAvailabilitySearchInputSelectView%24AvailabilitySearchInputSelectView%24DropDownListSearchBy=columnView"+
 				"&ControlGroupAvailabilitySearchInputSelectView%24ButtonSubmit=Search")
-				.data("query", "Java").userAgent("Mozilla").cookie("auth", "token").timeout(30000).get();
+				.data("query", "Java").userAgent("Mozilla").cookie("auth", "token").timeout(20000).get();
 		  
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<FlightInformation> list1 = new ArrayList<FlightInformation>();
 		List<FlightInformation> list2 = new ArrayList<FlightInformation>();
 		String otherFareBerangkat="empty"; String otherFarePulang="empty"; 
 		
-		for (org.jsoup.nodes.Element table : doc.select("table[id=fareTable1_4]")) {
-			for (org.jsoup.nodes.Element tr : table.select("tr[class=rgRow]")) {
+		for (org.jsoup.nodes.Element tr : doc.select("table[id=fareTable1_4]").select("tr[class=rgRow")) {
 				org.jsoup.select.Elements result1 = tr.select("div[class=segmentStation]");
 				//org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
 				org.jsoup.select.Elements result3 = tr.select("div[class=price]").select("span");
@@ -100,12 +99,10 @@ public class ScrapperService {
 					otherFareBerangkat = "available";
 				}
 				list1.add(f);
-			}
 		}
 		
 		if(CheckNullEmpty.isNotNullOrEmpty(date2)){
-		for (org.jsoup.nodes.Element table : doc.select("table[id=fareTable2_4]")) {
-			for (org.jsoup.nodes.Element tr : table.select("tr[class=rgRow]")) {
+		for (org.jsoup.nodes.Element tr : doc.select("table[id=fareTable2_4]").select("tr[class=rgRow]")) {
 				org.jsoup.select.Elements result1 = tr.select("div[class=segmentStation]");
 				//org.jsoup.select.Elements result2 = tr.select("div[class=hotspot]");
 				org.jsoup.select.Elements result3 = tr.select("div[class=price]").select("span");
@@ -128,7 +125,6 @@ public class ScrapperService {
 					otherFarePulang = "available";
 				}
 				list2.add(f);
-			}
 		}
 		}
 		
